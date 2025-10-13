@@ -1,10 +1,13 @@
+require('dotenv').config();
 const fs = require('fs');
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { handleMessage, handleReaction } = require('./handlers');
 const logger = require('./logger');
 
 async function main() {
-  const config = JSON.parse(fs.readFileSync(process.env.CONFIG_FILE, 'utf-8'));
+  // Get the config based on the environment
+  const configFile = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
+  const config = configFile[process.env.NODE_ENV];
 
   const discord = new Client({
     intents: [
@@ -15,7 +18,8 @@ async function main() {
     ],
     partials: [Partials.Message, Partials.Channel, Partials.Reaction]
   });
-  await discord.login(process.env.DISCORD_TOKEN);
+
+  await discord.login(config.token);
 
   const channels = {
     announcements: await discord.channels.fetch(config.channelIds.announcements),
