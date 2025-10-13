@@ -9,11 +9,15 @@
     "prettier": "prettier --write \"./**/*.{js,ts,md,json,json.example}\"",
     "prettier:check": "prettier --check \"./**/*.{js,ts,md,json,json.example}\"",
     "start-prod": "node --env-file .env-prod src/index.js",
-    "start-dev": "node --env-file .env-dev src/index.js"
+    "start-dev": "NODE_ENV=development node src/index.js",
+    "start-dev-pm2": "NODE_ENV=development pm2 start src/index.js --name discord",
+    "stop-dev-pm2": "NODE_ENV=development pm2 stop discord",
+    "delete-dev-pm2": "NODE_ENV=development pm2 delete discord"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.3",
-    "discord.js": "^14.15.3"
+    "discord.js": "^14.15.3",
+    "dotenv": "^17.2.3"
   },
   "devDependencies": {
     "eslint": "^8.57.0",

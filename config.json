@@ -1,0 +1,32 @@
+{
+  "development": {
+    "token": "MTQyMzc3MzM2MTQ4MTE5MTQ3Ng.GZe05z.g0vd87wRL6vb8G8m-t4MoHZQNvsZNmpgQV9E_I",
+    "channelIds": {
+      "announcements": "1423785775127986257",
+      "logs": "1424718391666675712",
+      "prompt": "1424718449296281662"
+    },
+    "emojis": {
+      "ban": "🤮",
+      "redo": "🧏‍♂️"
+    },
+    "roleIds": {
+      "api3-bot-immune": "1424795204434661466"
+    }
+  },
+  "production": {
+    "token": "",
+    "channelIds": {
+      "announcements": "1269346845193404589",
+      "logs": "1263779305826291712",
+      "prompt": "1269346901459996754"
+    },
+    "emojis": {
+      "ban": "🤮",
+      "redo": "🧏‍♂️"
+    },
+    "roleIds": {
+      "api3-bot-immune": "1269347559717998685"
+    }
+  }
+}
