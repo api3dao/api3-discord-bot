@@ -1,5 +1,4 @@
 node_modules/
 .env
-
-ec2-connect
 config.json
+ec2-connect
