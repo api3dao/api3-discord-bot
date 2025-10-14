@@ -10,9 +10,10 @@
     "prettier:check": "prettier --check \"./**/*.{js,ts,md,json,json.example}\"",
     "start-prod": "node --env-file .env-prod src/index.js",
     "start-dev": "NODE_ENV=development node src/index.js",
-    "start-dev-pm2": "NODE_ENV=development pm2 start src/index.js --name discord",
-    "stop-dev-pm2": "NODE_ENV=development pm2 stop discord",
-    "delete-dev-pm2": "NODE_ENV=development pm2 delete discord"
+    "start-dev-pm2": "NODE_ENV=development pm2 start src/index.js --name discord-dev",
+    "stop-dev-pm2": "NODE_ENV=development pm2 stop discord-dev",
+    "restart-dev-pm2": "NODE_ENV=development pm2 restart discord-dev",
+    "delete-dev-pm2": "NODE_ENV=development pm2 delete discord-dev"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.24.3",
