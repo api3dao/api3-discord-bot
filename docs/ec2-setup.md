@@ -28,6 +28,8 @@ The PEM file must be available on your local computer, look in `~/.ssh/`. The PE
 The complete syntax to connect an SSH client is available on Keybase.
 
 ```sh
+// PEM file, user, and connect-string are in Keybase
+
 cd ~/.ssh/
 ssh -i "<file-name>.pem" <user>@<connect-string>
 
