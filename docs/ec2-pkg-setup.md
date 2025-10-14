@@ -1,6 +1,9 @@
-# Nodejs setup
+<link rel="stylesheet" type="text/css" href="styles.css">
+<div onclick="history.back()" class="btn"><span class="arrow">←</span> Go back <span class="title">Discord Bot</span></div>
 
-Nodejs is used by the Discord bot along with other packages
+# Install global packages on EC2
+
+Nodejs is used by the Discord bot along with other packages.
 
 - nvm: Nodejs runtimes
 - pnpm: package management
@@ -13,11 +16,11 @@ See AWS the doc [here](https://docs.aws.amazon.com/sdk-for-javascript/v2/develop
 
 ## Install `git`
 
-`git` may already be installed into the EC2 instance and only needs to be configured by creating a `config` file. If Git is not installed, you can install it using your instance's package manager (e.g., `sudo yum install git -y` for Amazon Linux or `sudo apt-get install git -y` for Ubuntu).
+If Git is not installed, install it using the package manager for Amazon Linux (e.g., `sudo yum install git -y` .
 
 ## Install `pm2`
 
-`pm2` is used for process management of multiple Nodejs instances. This allows instance processes to live beyond the closure of an SSH client connection. `pm2` is a Nodejs centric package.
+`pm2` is used for process management of multiple Nodejs instances. This allows multiple Nodejs instance processes to live beyond the closure of an SSH client connection. `pm2` is a Nodejs centric package.
 
 ```sh
 npm install -g pm2

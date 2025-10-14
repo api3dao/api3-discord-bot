@@ -1,4 +1,7 @@
-# `api3-discord-bot`
+<link rel="stylesheet" type="text/css" href="styles.css">
+<div onclick="history.back()" class="btn"><span class="arrow">←</span> Go back <span class="title">Discord Bot</span></div>
+
+# Overview
 
 This project is a Discord bot for the API3 community, built with Node.js and the `discord.js` library. Its main features and structure are:
 
