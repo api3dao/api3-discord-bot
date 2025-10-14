@@ -10,13 +10,13 @@ Nodejs is used by the Discord bot along with other packages.
 - git: repo access
 - pm2: Nodejs instance management
 
-## Setup NVM, Nodejs, NPM
+## Install `NVM, Nodejs, NPM`
 
-See AWS the doc [here](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html). Check the `nvm` GitHub [repo](https://github.com/nvm-sh/nvm) for the latest version. Update the curl command that install `nvm` with the latest version if needed (e.g. `v0.40.1 > v0.40.3`).
+See AWS the doc [here](https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-up-node-on-ec2-instance.html). Check the `nvm` GitHub [repo](https://github.com/nvm-sh/nvm) for the latest version. Update the curl command that installs `nvm` with the latest version if needed (e.g. `v0.40.1 > v0.40.3`).
 
 ## Install `git`
 
-If Git is not installed, install it using the package manager for Amazon Linux (e.g., `sudo yum install git -y` .
+If Git is not installed, install it using the package manager for Amazon Linux (e.g., `sudo yum install git -y`).
 
 ## Install `pm2`
 
