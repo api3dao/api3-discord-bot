@@ -1,18 +1,11 @@
-const { Anthropic } = require('@anthropic-ai/sdk');
-
-const anthropic = new Anthropic({
-  apiKey: process.env.ANTHROPIC_API_KEY
-});
+const fs = require('fs');
+const CONFIG = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))[process.env.NODE_ENV];
 
 async function chat(messages) {
   try {
-    return chatWithOpenRouter('anthropic/claude-sonnet-4', messages);
+    return await chatWithOpenRouter('anthropic/claude-sonnet-4', messages);
   } catch (errorOpenrouter) {
-    try {
-      return chatWithAnthropic('claude-sonnet-4-20250514', messages);
-    } catch (errorAnthropic) {
-      console.error(`Openrouter call failed with ${errorOpenrouter}\nAnthropic call failed with ${errorAnthropic}`);
-    }
+    console.error(`chatWithOpenRouter() error:\n ${JSON.stringify(errorOpenrouter, null, 4)}`);
   }
 }
 
@@ -20,7 +13,7 @@ async function chatWithOpenRouter(model, messages) {
   const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      Authorization: `Bearer ${CONFIG.keys.openrouter}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
@@ -28,19 +21,10 @@ async function chatWithOpenRouter(model, messages) {
       messages
     })
   });
-  const responseJson = await response.json();
-  return responseJson.choices[0].message.content;
-}
 
-async function chatWithAnthropic(model, messages) {
-  const response = await anthropic.messages.create({
-    max_tokens: 1024,
-    messages: messages.map((message) => {
-      return { role: 'user', content: message };
-    }),
-    model
-  });
-  return response.content[0].text;
+  const responseJson = await response.json();
+  if (!response.ok) throw responseJson;
+  else return responseJson.choices[0].message.content;
 }
 
 module.exports = {
