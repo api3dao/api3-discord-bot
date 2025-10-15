@@ -9,7 +9,7 @@ The PM2 package is used to host multiple Nodejs apps (bots) running on the EC2 s
 
 There are several scripts in the [package.json](https://github.com/api3dao/api3-discord-bot/blob/main/package.json) file that will execute PM2 commands for the bot.
 
-```json
+```
 "start-prod-pm2": "NODE_ENV=production pm2 start src/index.js --name discord",
 "stop-prod-pm2": "NODE_ENV=production pm2 stop discord",
 "restart-prod-pm2": "NODE_ENV=production pm2 restart discord",
