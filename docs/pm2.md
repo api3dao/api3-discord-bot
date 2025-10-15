@@ -22,21 +22,21 @@ There are several scripts in the [package.json](https://github.com/api3dao/api3-
 "delete-dev-pm2": "NODE_ENV=development pm2 delete discord-dev"
 ```
 
-### `pnpm start-dev-pm2`
+### `pnpm start-prod-pm2`
 
 Starts a bot instance if one is not already running. The bot will be visible in the PM2 list of running processes which is presented after the script runs.
 
-The column label ↺ show the number of start/restarts for the instance.
+The column label ↺ shows the number of start/restarts for the instance.
 
 ```
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
-│ 0  │ discord-dev        │ fork     │ 0    │ online    │ 0%       │ 18.3mb   │
+│ 0  │ discord            │ fork     │ 0    │ online    │ 0%       │ 18.3mb   │
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
 ```
 
-### `pnpm restart-dev-pm2`
+### `pnpm restart-prod-pm2`
 
 Restarts the bot instance only if it is already already running. The bot will be visible in the PM2 list of running processes which is presented after the script runs.
 
@@ -46,11 +46,11 @@ The column label ↺ show the number of start/restarts for the instance.
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
-│ 0  │ discord-dev        │ fork     │ 1    │ online    │ 0%       │ 10.3mb   │
+│ 0  │ discord            │ fork     │ 1    │ online    │ 0%       │ 10.3mb   │
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
 ```
 
-### `pnpm stop-dev-pm2`
+### `pnpm stop-prod-pm2`
 
 Stops the bot instance only if it is already already running. The bot will be visible in the PM2 list of running processes which is presented after the script runs but now with a status of stopped.
 
@@ -60,11 +60,11 @@ The column label ↺ show the number of start/restarts for the instance.
 ┌────┬────────────────────┬──────────┬──────┬───────────┬──────────┬──────────┐
 │ id │ name               │ mode     │ ↺    │ status    │ cpu      │ memory   │
 ├────┼────────────────────┼──────────┼──────┼───────────┼──────────┼──────────┤
-│ 0  │ discord-dev        │ fork     │ 1    │ stopped   │ 0%       │ 0b       │
+│ 0  │ discord            │ fork     │ 1    │ stopped   │ 0%       │ 0b       │
 └────┴────────────────────┴──────────┴──────┴───────────┴──────────┴──────────┘
 ```
 
-### `pnpm delete-dev-pm2`
+### `pnpm delete-prod-pm2`
 
 Removes (deletes) the bot instance only if it is already already running. The bot will not longer be visible in the PM2 list of running processes which is presented after the script runs.
 

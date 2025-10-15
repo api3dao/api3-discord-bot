@@ -1,5 +1,9 @@
 # @api3/discord-bot
 
+## Documentation
+
+Documentation for development is part of this repo using `gitpages`, see [here](https://api3dao.github.io/api3-discord-bot/).
+
 ## Intents
 
 Intents are used to specify which events bot will receive from the Discord gateway.
