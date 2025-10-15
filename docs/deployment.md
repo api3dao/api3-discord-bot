@@ -1,4 +1,7 @@
-# Deployments
+<link rel="stylesheet" type="text/css" href="styles.css">
+<div onclick="history.back()" class="btn"><span class="arrow">←</span> Go back <span class="title">Discord Bot</span></div>
+
+# Production deployment
 
 The EC2 instance can run many instances of Node.js because of the use of PM2 inside the EC2 instance, see the [PM2 documentation](pm2). As such it is possible to run the bot for production and/or development where the later might be considered a stage deployment using the development Discord server Curt.
 
