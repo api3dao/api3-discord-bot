@@ -1,13 +1,13 @@
-require('dotenv').config();
 const fs = require('fs');
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { handleMessage, handleReaction } = require('./handlers');
 const logger = require('./logger');
 
 async function main() {
-  // Get the config based on the environment
-  const configFile = JSON.parse(fs.readFileSync('./config.json', 'utf-8'));
-  const config = configFile[process.env.NODE_ENV];
+  const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))[process.env.NODE_ENV];
+  console.log(`\n----- Discord bot startup`);
+  console.log(`----- ${process.env.NODE_ENV} configuration`);
+  console.log(config);
 
   const discord = new Client({
     intents: [
@@ -36,8 +36,16 @@ async function main() {
     api3BotImmune: config.roleIds['api3-bot-immune']
   };
 
-  // Control messages on creation
+  /**
+   * Control messages on creation
+   * If there is no message.content, ignore it
+   */
   discord.on('messageCreate', async (message) => {
+    // Check message.content, it could be empty, null, or undefined
+    // For instance, a new user joins the server
+    // For what ever reason, there is no need to check message.content if there is none
+    if (!message.content || message.content === null || message.content === '') return;
+
     try {
       await handleMessage(message, channels, roleIds);
     } catch (error) {
@@ -46,7 +54,9 @@ async function main() {
     }
   });
 
-  // Control messages on edit
+  /**
+   * Control messages on edit
+   */
   discord.on('messageUpdate', async (_oldMessage, newMessage) => {
     try {
       await handleMessage(newMessage, channels, roleIds);
@@ -55,7 +65,10 @@ async function main() {
     }
   });
 
-  // Do stuff based on the emojis in logs channel
+  /**
+   * A monitor has applied a reaction to a message in the logs channel
+   * This is either a ban or a redo
+   */
   discord.on('messageReactionAdd', async (reaction) => {
     try {
       await handleReaction(reaction, channels, emojis, discord);
