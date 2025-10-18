@@ -7,7 +7,7 @@ Development for the bot is not much different than most Nodejs projects. There i
 
 ## Curt server
 
-For development you will need access to the Curt development server or create you own. Setting up a development server is a complex task in that you must mirror the categories, channels, and roles of the production Discord server. For development you need Admin access on Curt and a server invite link. Contact an existing Admin for access.
+For development you will need access to the Curt development server or create you own. Setting up a development server is complex in that you must mirror the categories, channels, and roles of the production Discord server. Contact an existing Admin for access via an invite link.
 
 ## Local repo
 
@@ -32,4 +32,4 @@ pnpm start-dev
 
 ## Secrets files
 
-Do not push the `config.json` file to the remote repo. Do not change the files name which us listed in `.gitignore`.
+Do not push the `config.json` file to the remote repo. Do not change the file name which is listed in `.gitignore`.

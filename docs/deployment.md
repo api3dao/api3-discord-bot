@@ -11,19 +11,23 @@ A production deployment will use the production Discord server named "Api3".
 
 ### Step 1: Connect to EC2
 
-Connect to the EC2 instance, see the `ec2-instance` document on Keybase.
-
-### Step 2: EC2 `api3-discord-bot` folder
-
-Move into the `api3-discord-bot` folder.
+Connect to the EC2 instance, see the `ec2-instance` document on Keybase and move into the `api3-discord-bot` folder.
 
 ```sh
 cd api3-discord-bot
 ```
 
-### Step 3: `config.json` file
+### Step 2: Pull repo changes (optional)
 
-Move the `config.json` secret file from your local repo into the `api3-discord-bot` folder on the EC2 instance. Do so using the `scp` command, see the `ec2-instance` file in Keybase. Be sure that your the file is accurate. If you made changes be sure to update the file on Keybase for other to access.
+If the remote repo has been updated, pull the changes down to the local repo.
+
+```sh
+git pull
+```
+
+### Step 3: `config.json` file (optional)
+
+If you updated the `config.json` secret file move it from your local repo into the `api3-discord-bot` folder on the EC2 instance. Do so using the `scp` command, see the `ec2-instance` file in Keybase. If you made changes be sure to update the file on Keybase for other to access.
 
 ### Step 4: PM2 start/restart
 
