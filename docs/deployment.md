@@ -31,7 +31,7 @@ If you updated the `config.json` secret file move it from your local repo into t
 
 ### Step 4: PM2 start/restart
 
-Only use the script in `package.json` to manage the production Nodejs instance on EC2. These scripts guarantee the the instance will run as a PM2 process. The process will continue to run even after you disconnect from the EC2 instance. See the [PM2 documentation](pm2) for more details
+Only use the scripts in `package.json` to manage the production Nodejs instance on EC2. These scripts guarantee that the instance will run as a PM2 process. The process will continue to run even after you disconnect from the EC2 instance. See the [PM2 documentation](pm2) for more details.
 
 ```sh
 # Show the currently running Nodejs instances
