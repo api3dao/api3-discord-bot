@@ -1,3 +1,6 @@
+<link rel="stylesheet" type="text/css" href="styles.css">
+<div onclick="history.back()" class="btn"><span class="arrow">←</span> Go back <span class="title">Discord Bot</span></div>
+
 # Discord Roles
 
 The following roles are used to manage server channel access for users and the api-discord-bot.
