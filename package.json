@@ -1,0 +1,30 @@
+{
+  "name": "@api3/discord-bot",
+  "version": "1.1.0",
+  "description": "API3 Discord bot",
+  "license": "UNLICENSED",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "pnpm prettier:check && eslint . --ext .js,ts",
+    "prettier": "prettier --write \"./**/*.{js,ts,md,json,json.example}\"",
+    "prettier:check": "prettier --check \"./**/*.{js,ts,md,json,json.example}\"",
+    "---prod---": "",
+    "start-prod-pm2": "NODE_ENV=production pm2 start src/index.js --name discord",
+    "stop-prod-pm2": "NODE_ENV=production pm2 stop discord",
+    "restart-prod-pm2": "NODE_ENV=production pm2 restart discord",
+    "delete-prod-pm2": "NODE_ENV=production pm2 delete discord",
+    "---dev---": "",
+    "start-dev": "NODE_ENV=development node src/index.js",
+    "start-dev-pm2": "NODE_ENV=development pm2 start src/index.js --name discord-dev",
+    "stop-dev-pm2": "NODE_ENV=development pm2 stop discord-dev",
+    "restart-dev-pm2": "NODE_ENV=development pm2 restart discord-dev",
+    "delete-dev-pm2": "NODE_ENV=development pm2 delete discord-dev"
+  },
+  "dependencies": {
+    "discord.js": "^14.15.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3"
+  }
+}
