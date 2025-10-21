@@ -21,7 +21,7 @@ git clone git@github.com:api3dao/api3-discord-bot.git
 
 ### Step 2: Add `config.json`file
 
-Add a `config.json` file to your local repo. Its contents can be downloaded from the `config.json.example` file from Keybase. For access contact a Discord Admin.
+Add a `config.json` file to your local repo. Its can be downloaded from Keybase. For access contact a Discord Admin.
 
 Do not push the `config.json` file to the remote repo. Do not change the file name which is listed in `.gitignore`.
 
