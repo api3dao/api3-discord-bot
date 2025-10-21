@@ -27,7 +27,7 @@ git pull
 
 ### Step 3: `config.json` file (optional)
 
-If you updated the `config.json` secret file move it from your local repo into the `api3-discord-bot` folder on the EC2 instance. Do so using the `scp` command, see the `ec2-instance` file in Keybase. If you made changes be sure to update the `config.json.example` file on Keybase for other to access.
+If you updated the `config.json` secret file move it from your local repo into the `api3-discord-bot` folder on the EC2 instance. Do so using the `scp` command, see the `ec2-instance` file in Keybase. If you made changes be sure to update the `config.json` file on Keybase for other to access.
 
 ### Step 4: PM2 start/restart
 
