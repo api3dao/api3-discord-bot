@@ -1,0 +1,38 @@
+{
+  "development": {
+    "token": "<discord-server-token>",
+    "keys": {
+      "openrouter": "<openrouter-key>"
+    },
+    "channelIds": {
+      "announcements": "<discord-channel-id>",
+      "logs": "<discord-channel-id>",
+      "prompt": "<discord-channel-id>"
+    },
+    "emojis": {
+      "ban": "🤮",
+      "redo": "🧏‍♂️"
+    },
+    "roleIds": {
+      "api3-bot-immune": "<discord-role-id>>"
+    }
+  },
+  "production": {
+     "token": "<discord-server-token>",
+    "keys": {
+      "openrouter": "<openrouter-key>"
+    },
+    "channelIds": {
+      "announcements": "<discord-channel-id>",
+      "logs": "<discord-channel-id>",
+      "prompt": "<discord-channel-id>"
+    },
+    "emojis": {
+      "ban": "🤮",
+      "redo": "🧏‍♂️"
+    },
+    "roleIds": {
+      "api3-bot-immune": "<discord-role-id>>"
+    }
+  }
+}
