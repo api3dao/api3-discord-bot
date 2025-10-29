@@ -3,7 +3,7 @@
 
 # Overview
 
-This project is a Discord bot for the API3 community, built with Node.js and the `discord.js` library. Its main features and structure are:
+This project is a Discord bot for the Api3 community, built with Node.js and the `discord.js` library. Its main features and structure are:
 
 - **Purpose:** The bot moderates a Discord server by monitoring messages and reactions, enforcing rules, and automating moderation actions.
 - **AI Moderation:** It uses a large language model (Anthropic Claude via OpenRouter) to analyze messages and decide if they violate server rules.
@@ -26,7 +26,7 @@ This project is a Discord bot for the API3 community, built with Node.js and the
 
 - `*-prod-pm2` for running the production bot in a PM2 process on EC2
 - `*-dev-pm2` for running the development bot in a PM2 process on EC2
-- `start-prod` for running the development bot locally
+- `start-dev` for running the development bot locally
 - `lint`, `prettier`, and `prettier:check` for code formatting and linting
 
 ## Configuration
@@ -35,4 +35,4 @@ Sensitive data and server-specific settings are loaded from a config file (not i
 
 ## Summary
 
-This bot automates moderation in a Discord server using AI, with configurable channels, roles, and emoji-based moderator controls.
+This bot automates moderation in a Telergam super group using AI with configurable groups/topics..
