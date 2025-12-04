@@ -31,6 +31,11 @@ const handleMessage = async (message, channels, roleIds) => {
   ];
 
   const response = await chat(messages);
+  // May not be formatted as requested
+  if (!response || typeof response !== 'string' || !response.includes('|')) {
+    logger.error(`LLM response invalid format: ${response}`);
+    return;
+  }
   const [result, reason] = response.split('|');
 
   if (result === 'YES') {
@@ -50,7 +55,19 @@ const handleMessage = async (message, channels, roleIds) => {
       )
     );
     await channels.announcements.send(
-      `${message.author}, I deleted your message at <#${message.channel.id}> and put you on timeout for ${timeoutLengthInHours} hours because \`${reason}\` Our moderators will review this.`
+      `${message.author.username}, I deleted your message at <#${message.channel.id}> and put you on timeout for ${timeoutLengthInHours} hours because \`${reason}\` Our moderators will review this.`
+    );
+
+    // Console logging
+    logger.info(
+      `>>> AI returned: ${message.author.username} - ${message.author.globalName} - ${message.author.id}: ${result} - ${reason}`
+    );
+
+    // Ntfy notification
+    logger.ntfy(
+      `USER: ${message.author.username} - ${message.author.globalName}\nREASON: ${reason}\nMESSAGE: ${message.content}`,
+      'warning',
+      'AI Violation'
     );
   }
 };
