@@ -5,7 +5,8 @@ const logger = require('./logger');
 
 async function main() {
   const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))[process.env.NODE_ENV];
-  logger.info(`>>> Discord bot (${process.env.NODE_ENV}) startup`);
+  logger.info(`The Discord Api3 Guardian bot (${process.env.NODE_ENV}) is ready.`);
+  logger.ntfy(`Bot starting in ${process.env.NODE_ENV} mode`, 'rocket', 'Startup');
 
   const discord = new Client({
     intents: [
