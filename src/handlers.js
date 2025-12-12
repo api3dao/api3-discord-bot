@@ -33,7 +33,7 @@ const handleMessage = async (message, channels, roleIds) => {
   const response = await chat(messages);
   // May not be formatted as requested
   if (!response || typeof response !== 'string' || !response.includes('|')) {
-    logger.error(`LLM response invalid format: ${response}`);
+    logger.error(`>>> LLM response invalid format: ${response}`);
     return;
   }
   const [result, reason] = response.split('|');
