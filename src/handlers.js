@@ -38,7 +38,8 @@ const handleMessage = async (message, channels, roleIds) => {
   }
   const [result, reason] = response.split('|');
 
-  if (result === 'YES') {
+  // result could be YES or <result>YES
+  if (result.includes('YES')) {
     await message.delete();
     const timeoutLengthInHours = 24;
     await author.timeout(timeoutLengthInHours * 60 * 60 * 1000);
