@@ -2,11 +2,12 @@ const fs = require('fs');
 const { Client, GatewayIntentBits, Partials } = require('discord.js');
 const { handleMessage, handleReaction } = require('./handlers');
 const logger = require('./logger');
+const { sendPushNotification } = require('./pushover');
 
 async function main() {
   const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))[process.env.NODE_ENV];
   logger.info(`The Discord Api3 Guardian bot (${process.env.NODE_ENV}) is ready.`);
-  logger.ntfy(`Bot starting in ${process.env.NODE_ENV} mode`, 'rocket', 'Startup');
+  sendPushNotification(0, 'STARTUP', `Bot starting in ${process.env.NODE_ENV} mode`);
 
   const discord = new Client({
     intents: [
@@ -77,14 +78,15 @@ async function main() {
   });
 
   // Enable graceful stop
-  process.once('SIGINT', () => {
+  // The push notifications will only appear in Pushover if running with PM2
+  process.once('SIGINT', async () => {
     logger.info('Bot stopping (SIGINT)');
-    logger.ntfy('Bot stopping (SIGINT)', 'stop_sign', 'Shutdown');
+    await sendPushNotification(0, 'SHUTDOWN', 'Bot stopping - SIGINT');
     discord.destroy();
   });
-  process.once('SIGTERM', () => {
+  process.once('SIGTERM', async () => {
     logger.info('Bot stopping (SIGTERM)');
-    logger.ntfy('Bot stopping (SIGTERM)', 'stop_sign', 'Shutdown');
+    await sendPushNotification(0, 'SHUTDOWN', 'Bot stopping - SIGTERM');
     discord.destroy();
   });
 }

@@ -1,5 +1,6 @@
 const { chat } = require('./llm');
 const logger = require('./logger');
+const { sendPushNotification } = require('./pushover');
 
 const handleMessage = async (message, channels, roleIds) => {
   if (message.author.bot) return;
@@ -64,12 +65,12 @@ const handleMessage = async (message, channels, roleIds) => {
       `>>> AI returned: ${message.author.username} - ${message.author.globalName} - ${message.author.id}: ${result} - ${reason}`
     );
 
-    // Ntfy notification
-    logger.ntfy(
-      `USER: ${message.author.username} - ${message.author.globalName}\nREASON: ${reason}\nMESSAGE: ${message.content}`,
-      'warning',
-      'AI Violation'
-    );
+    // Call Pushover about the VIOLATION message
+    sendPushNotification(0, `VIOLATION: ${message.author.username}`, message.content);
+  }
+  // Call Pushover about POSTED message if no violation
+  else {
+    sendPushNotification(2, `POSTED: ${message.author.username}`, message.content);
   }
 };
 
