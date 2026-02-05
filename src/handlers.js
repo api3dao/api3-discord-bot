@@ -1,6 +1,7 @@
 const { chat } = require('./llm');
 const logger = require('./logger');
 const { sendPushNotification } = require('./pushover');
+const { addFileDb } = require('./utils/db');
 
 const handleMessage = async (message, channels, roleIds) => {
   if (message.author.bot) return;
@@ -16,8 +17,14 @@ const handleMessage = async (message, channels, roleIds) => {
     throw error;
   }
 
+  // If the user has immunity, write message to file-db/telegram for social media daily, skip processing
   const memberRoleIds = author.roles.cache.map((role) => role.id);
-  if (memberRoleIds.includes(roleIds.api3BotImmune)) return;
+  if (memberRoleIds.includes(roleIds.api3BotImmune)) {
+    await addFileDb(message);
+    return;
+  }
+
+  // Load the AI prompt
   const prompt = (await channels.prompt.messages.fetch({ limit: 1 })).first().content;
 
   const messages = [
@@ -69,7 +76,9 @@ const handleMessage = async (message, channels, roleIds) => {
     sendPushNotification(`VIOLATION: ${message.author.username}`, message.content);
   }
   // Call Pushover about POSTED message if no violation
+  // Add message to db for api3-social-media to post later
   else {
+    await addFileDb(message);
     sendPushNotification(`POSTED: ${message.author.username}`, message.content);
   }
 };
@@ -130,7 +139,11 @@ const handleReaction = async (reaction, channels, emojis, discord) => {
         }
         throw error;
       }
+
       await originalUser.timeout(null);
+
+      // Write message to file-db/telegram for social media daily
+      await addFileDb(originalMessage);
       break;
     }
   }
