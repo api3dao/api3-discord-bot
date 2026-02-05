@@ -66,11 +66,11 @@ const handleMessage = async (message, channels, roleIds) => {
     );
 
     // Call Pushover about the VIOLATION message
-    sendPushNotification(0, `VIOLATION: ${message.author.username}`, message.content);
+    sendPushNotification(`VIOLATION: ${message.author.username}`, message.content);
   }
   // Call Pushover about POSTED message if no violation
   else {
-    sendPushNotification(2, `POSTED: ${message.author.username}`, message.content);
+    sendPushNotification(`POSTED: ${message.author.username}`, message.content);
   }
 };
 
