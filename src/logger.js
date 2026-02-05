@@ -10,7 +10,7 @@ const log = (level, message) => {
 };
 
 // To prevent runaway logging
-let canPost = true;
+let burst = 0;
 
 module.exports = {
   info: (message) => log('info', message),
@@ -19,16 +19,14 @@ module.exports = {
     log('error', message);
 
     // Send to Pushover
-    if (canPost) {
-      // Allow further posting in 10 seconds, prevent excessive posting
+    if (burst < 5) {
+      burst++;
+      sendPushNotification('ERROR', JSON.stringify(message, null, 5));
+    } else {
+      // Allow further posting in 10 seconds (after the burst), to prevent excessive posting
       setTimeout(() => {
-        canPost = true;
+        burst = 0;
       }, 10000);
-
-      canPost = false;
-
-      // Send to Pushover
-      sendPushNotification(0, 'ERROR', message);
     }
   }
 };
