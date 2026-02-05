@@ -7,7 +7,7 @@ const { sendPushNotification } = require('./pushover');
 async function main() {
   const config = JSON.parse(fs.readFileSync('./config.json', 'utf-8'))[process.env.NODE_ENV];
   logger.info(`The Discord Api3 Guardian bot (${process.env.NODE_ENV}) is ready.`);
-  sendPushNotification(0, 'STARTUP', `Bot starting in ${process.env.NODE_ENV} mode`);
+  sendPushNotification('STARTUP', `Bot starting in ${process.env.NODE_ENV} mode`);
 
   const discord = new Client({
     intents: [
@@ -81,12 +81,12 @@ async function main() {
   // The push notifications will only appear in Pushover if running with PM2
   process.once('SIGINT', async () => {
     logger.info('Bot stopping (SIGINT)');
-    await sendPushNotification(0, 'SHUTDOWN', 'Bot stopping - SIGINT');
+    await sendPushNotification('SHUTDOWN', 'Bot stopping - SIGINT');
     discord.destroy();
   });
   process.once('SIGTERM', async () => {
     logger.info('Bot stopping (SIGTERM)');
-    await sendPushNotification(0, 'SHUTDOWN', 'Bot stopping - SIGTERM');
+    await sendPushNotification('SHUTDOWN', 'Bot stopping - SIGTERM');
     discord.destroy();
   });
 }
