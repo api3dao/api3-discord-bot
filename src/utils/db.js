@@ -43,9 +43,15 @@ async function addFileDb(msg) {
     msgSummary._username = msg.author.username ? `@${msg.author.username}` : '-unknown-';
     msgSummary._text = msg.content ? msg.content : '';
     msgSummary._community = 'discord';
+    //msgSummary._channel = msg.discordChannel;
+
+    // Get the channel name for discord
+    /*if(msgSummary === 'discord'){
+      const channelNameclient.channels.fetch(channelId)
+    }*/
 
     // Now add the file to the today folder
-    fs.writeFileSync(`../file-db/discord/${today}/${msg.id}.json`, JSON.stringify(msgSummary, null, 5));
+    fs.writeFileSync(`../file-db/discord/${today}/${msg.createdTimestamp}.json`, JSON.stringify(msgSummary, null, 5));
   } catch (error) {
     error._location = 'db.js -> addFileDb';
     error._message = error.toString();

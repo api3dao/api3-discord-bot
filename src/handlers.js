@@ -1,3 +1,4 @@
+//const { MessageFlags } = require('discord.js');
 const { chat } = require('./llm');
 const logger = require('./logger');
 const { sendPushNotification } = require('./pushover');
@@ -20,6 +21,8 @@ const handleMessage = async (message, channels, roleIds) => {
   // If the user has immunity, write message to file-db/telegram for social media daily, skip processing
   const memberRoleIds = author.roles.cache.map((role) => role.id);
   if (memberRoleIds.includes(roleIds.api3BotImmune)) {
+    //console.log('>>> immune');
+    //console.log(message);
     await addFileDb(message);
     return;
   }
@@ -78,6 +81,8 @@ const handleMessage = async (message, channels, roleIds) => {
   // Call Pushover about POSTED message if no violation
   // Add message to db for api3-social-media to post later
   else {
+    //console.log('>>> new msg');
+    //console.log(message);
     await addFileDb(message);
     sendPushNotification(`POSTED: ${message.author.username}`, message.content);
   }
@@ -125,10 +130,12 @@ const handleReaction = async (reaction, channels, emojis, discord) => {
       const originalChannelId = log.channel.match(/<#(\d+)>/)[1];
       const originalMessage = log.message;
       const targetChannel = await discord.channels.fetch(originalChannelId);
+
       await targetChannel.send(
         `> I deleted the message below by ${log.user} for breaking server rules, but a moderator told me to repost it and take them out of timeout. Sorry!\n ${originalMessage}`
       );
       const originalUserId = log.user.match(/<@(\d+)>/)[1];
+
       let originalUser;
       try {
         originalUser = await reaction.message.guild.members.fetch(originalUserId);
@@ -142,8 +149,19 @@ const handleReaction = async (reaction, channels, emojis, discord) => {
 
       await originalUser.timeout(null);
 
-      // Write message to file-db/telegram for social media daily
-      await addFileDb(originalMessage);
+      // Create a message object as expected by db.js
+      let msg = { author: { username: null } };
+      const timestamp = Date.now();
+      msg.id = timestamp;
+      msg.createdTimestamp = timestamp;
+      msg.author.username = originalUser.user.username;
+      msg.content = originalMessage;
+      //msg.channelName = targetChannel.name;
+
+      //console.log('>>> emojis.redo');
+      //console.log(msg);
+
+      await addFileDb(msg); //originalMessage
       break;
     }
   }
