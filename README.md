@@ -1,43 +1,30 @@
-# @api3/discord-bot
+# api3-discord-bot
 
-## Documentation
+This project is a Discord bot for the Api3 Discord server. See the [/docs](./docs/1%20Overview.md) folder in this repo for more information.
 
-Documentation for development is part of this repo using `gitpages`, see [here](https://api3dao.github.io/api3-discord-bot/).
+## Curt Server
 
-## Intents
+Development for the bot is not much different than most Nodejs projects. There is a Discord server named "Curt" that is already created and is part of the `config.json` file in the api3-discord-bot project.
 
-Intents are used to specify which events bot will receive from the Discord gateway.
+For development you will need access to the Curt development server or create you own. Setting up a development server is complex in that you must mirror the categories, channels, and roles of the production Discord server. Contact the repo owner for access via an invite link.
 
-- `GatewayIntentBits.Guilds`: Allows the bot to receive events related to server activities, such as role updates, channel creations, and deletions.
-- `GatewayIntentBits.GuildMessages`: Enables the bot to receive events related to messages sent in guild text channels, including message creation, updates, and deletions.
-- `GatewayIntentBits.MessageContent`: Permits the bot to access the content of messages (`message.content`).
-- `GatewayIntentBits.GuildMessageReactions`: Allows the bot to receive events related to message reactions, such as when someone reacts to a message.
+## Development
 
-## Partials
+Se the `package.json` file for the complete list of scripts.
 
-It is possible for some Discord events (such as messages, reactions, etc.) to be not fully cached, meaning the bot may not receive the complete data.
-Partials allow the bot to handle these events even with incomplete data.
+```sh
+git clone git@github.com:api3dao/api3-discord-bot.git
+pnpm install
+```
 
-- `Partials.Message`: For handling the messages events that are not fully cached.
-- `Partials.Channel`: For handling the channal events that are not fully cached.
-- `Partials.Reaction`: For handling the reaction events that are not fully cached.
+**config.json**: Sensitive data and server-specific settings are loaded from the `config.json` file (not in the repo). The file can be found on Keybase. Contact the repo owner for access.
 
-## config.json
+```sh
 
-### channelIds
+# After the config.json file has been added to your local repo
+pnpm start-dev
+```
 
-- `announcements`: The channel where deleted messages and banned users are announced.
-  The value is the channel's ID.
-- `logs`: The channel where messages deleted by the bot are posted.
-  The value is the channel's ID.
-- `prompt`: The channel that influences the bot's behavior based on the latest message.
-  The value is the channel's ID.
+## Production Deployments
 
-### emojis
-
-- `ban`: If someone reacts with the `emojis.ban` emoji to a message in the `logs` channel, the author of the original message will be banned.
-- `redo`: If someone reacts with the `emoji.redo` emoji to a message in the `logs` channel, the original message will be reposted to the corresponding channel.
-
-### roleIds
-
-- `api3-bot-immune`: Users with this specific role will be immune to the bot. The value is the role's ID.
+Visit the `/docs` folder in the [api3-social-ec2](https://github.com/api3dao/api3-social-ec2) repo.
