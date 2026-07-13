@@ -1,6 +1,6 @@
 # api3-discord-bot
 
-This project is a Discord bot for the Api3 Discord server. See the [/docs](./docs/1%20Overview.md) folder in this repo for more information.
+This project is a Discord bot for the Api3 Discord server. See the [/docs](/docs) folder in this repo for more information.
 
 ## Curt Server
 
@@ -27,4 +27,4 @@ pnpm start-dev
 
 ## Production Deployments
 
-Visit the `/docs` folder in the [api3-social-ec2](https://github.com/api3dao/api3-social-ec2) repo.
+Visit the `/docs` folder in the [api3-social-ec2](https://github.com/api3dao/api3-social-ec2/tree/main/docs) repo.
