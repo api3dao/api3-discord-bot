@@ -1,4 +1,4 @@
-# Overview
+# Introduction
 
 This project is a Discord bot for the Api3 Discord server. Built with Node.js and the `discord.js` library. Its main features and structure are:
 
